@@ -1,0 +1,20 @@
+@isTest
+public class LaptopBookingHandlerTest {
+	@isTest
+    static void testLaptopBookingTrigger(){
+        Laptop_Bookings__c testBooking = new Laptop_Bookings__c(
+        	Name ='Meghana',
+            Email__c = 'test@example.com'
+            Laptop_type__c = 'Dell',
+            Total_No_Of_Laptops__c = '10',
+            Name__c = 'Test User',
+            how_many_months__c = '3'
+        );
+        Test.startTest();
+        Insert testBooking;
+        testBooking.how_many_months__c = '4;
+        update testBooking;
+        Test.stopTest();
+        System.assertEquals(2, Limits.getEmailInvocations(),'Two emails should be sent (one on insert and one on update)');  
+    }
+}
